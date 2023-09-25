@@ -12,5 +12,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php-amqplib/php-amqplib": "^2.0"
+    }
 }
