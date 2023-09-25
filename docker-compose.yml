@@ -1,0 +1,29 @@
+version: "3"
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - internal
+    volumes:
+      - .:/var/www/html/
+      - ./logs/nginx:/var/log/nginx/
+
+  php:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    networks:
+      - internal
+    volumes:
+      - .:/var/www/html/
+      - ./logs/php.log:/var/log/fpm-php.www.log
+    environment:
+      - PHP_USER_ID=1000  # Defina o ID do usuário desejado
+
+networks:
+  internal:
+    driver: bridge
