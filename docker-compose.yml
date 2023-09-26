@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: nginx/Dockerfile
     ports:
-      - "8080:80"
+      - "8086:80"
     networks:
       - internal
     volumes:
@@ -23,6 +23,23 @@ services:
       - ./logs/php.log:/var/log/fpm-php.www.log
     environment:
       - PHP_USER_ID=1000  # Defina o ID do usuário desejado
+
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    hostname: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - 25672:25672
+      - 15672:15672
+
+    volumes:
+      - /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
+
+    environment:    
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - internal
 
 networks:
   internal:
