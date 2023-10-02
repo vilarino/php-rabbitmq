@@ -7,7 +7,7 @@ services:
     ports:
       - "8086:80"
     networks:
-      - internal
+      - rabbit_network
     volumes:
       - .:/var/www/html/
       - ./logs/nginx:/var/log/nginx/
@@ -17,7 +17,7 @@ services:
       context: .
       dockerfile: php/Dockerfile
     networks:
-      - internal
+      - rabbit_network
     volumes:
       - .:/var/www/html/
       - ./logs/php.log:/var/log/fpm-php.www.log
@@ -29,6 +29,7 @@ services:
     hostname: rabbitmq
     container_name: rabbitmq
     ports:
+      - 5672:5672
       - 25672:25672
       - 15672:15672
 
@@ -39,8 +40,8 @@ services:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
     networks:
-      - internal
+      - rabbit_network
 
 networks:
-  internal:
+  rabbit_network:
     driver: bridge

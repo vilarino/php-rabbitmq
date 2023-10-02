@@ -1,10 +1,14 @@
 <?php
 
 namespace App;
+
+use App\Queue\PersonQueue;
+
 class Application
 {
     public function index()
     {
-        echo "hello world";
+        $queue = new PersonQueue();
+        $queue->handler();
     }
 }
