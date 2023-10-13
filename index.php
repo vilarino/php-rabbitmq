@@ -5,5 +5,9 @@ require __DIR__ . '/vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+new App\Consumer\PersonConsumer();
 
-(new App\Application())->index();
+echo 'lendo';
+
+
+//(new App\Application())->index();
