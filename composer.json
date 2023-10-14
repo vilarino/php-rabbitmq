@@ -17,6 +17,7 @@
     "minimum-stability": "dev",
     "require": {
         "php-amqplib/php-amqplib": "^2.9.0",
-        "vlucas/phpdotenv": "^5.5@dev"
+        "vlucas/phpdotenv": "^5.5@dev",
+        "ramsey/uuid": "^4.2"
     }
 }
