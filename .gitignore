@@ -1,4 +1,4 @@
 vendor
-logs
+docker/logs
 .idea
 

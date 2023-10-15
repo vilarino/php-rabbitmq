@@ -32,7 +32,7 @@ class PersonQueue
 
             // Mensagem que será enviada
             //$messageBody = 'Olá, RabbitMQ!';
-            error_log(json_encode($_REQUEST));
+
             // Cria uma instância de AMQPMessage com a mensagem
             $message = new AMQPMessage($person->json(), [
                 'content_type' => 'text/plain',

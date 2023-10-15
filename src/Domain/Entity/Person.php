@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Queue;
+namespace App\Domain\Entity;
 
 use App\Queue\JsonableInterface;
 
@@ -9,13 +9,13 @@ class Person implements JsonableInterface
 {
     public string $name;
     public string $id;
-    public int $age;
+    public string $email;
     
-    public function __construct(string $id, string $name, int $age)
+    public function __construct(string $id, string $name, string $email)
     {
       $this->id = $id;
       $this->name = $name;
-      $this->age = $age;
+      $this->email = $email;
     }
 
     public function json()
@@ -23,7 +23,7 @@ class Person implements JsonableInterface
         return json_encode([
             'id' => $this->id,
             'name' => $this->name,
-            'age' => $this->age
+            'age' => $this->email
         ]);
     }
 }
