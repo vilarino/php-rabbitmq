@@ -20,9 +20,9 @@ class Application
 
     public function index()
     {
-        $output = $this->container->get(CreatePerson::class)
+        $this->container->get(CreatePerson::class)
         ->execute(new Input(Uuid::uuid4()->toString(), "Rafael", "rovilarino@gmail.com"));
 
-        var_dump('output', $output);
+        var_dump('output');
     }
 }
