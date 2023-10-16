@@ -20,6 +20,7 @@ services:
       - host.docker.internal:host-gateway
     networks:
       - rabbit_network
+      - rabbit_network_external
     volumes:
       - .:/var/www/html/
       - ./docker/logs/php.log:/var/log/fpm-php.www.log
@@ -45,8 +46,10 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
     networks:
       - rabbit_network
+      - rabbit_network_external
 
 networks:
   rabbit_network:
-    external:
-      name: rabbit_network_external
+    driver: bridge
+  rabbit_network_external:
+    external: true
