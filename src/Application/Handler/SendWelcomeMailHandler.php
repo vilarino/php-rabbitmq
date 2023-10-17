@@ -5,8 +5,6 @@ namespace App\Application\Handler;
 use App\Application\Queue\QueueInterface;
 use App\Domain\Event\DomainEventInterface;
 use App\Domain\Event\PersonCreatedEvent;
-use function DI\env;
-use function DI\string;
 
 class SendWelcomeMailHandler implements HandlerInterface
 {
@@ -31,9 +29,8 @@ class SendWelcomeMailHandler implements HandlerInterface
 
         $this->queue->publish(
             json_encode(['recipient' => $event->personEmail, 'body' => $body]),
-            $_ENV["RABBIT_MAIL_EXCHANGE"],
-            $_ENV["RABBIT_MAIL_QUEUE"],
-            $_ENV["RABBIT_MAIL_ROUTING_KEY"]
+            env("RABBIT_MAIL_QUEUE"),
+            env("RABBIT_MAIL_ROUTING_KEY")
         );
     }
 }

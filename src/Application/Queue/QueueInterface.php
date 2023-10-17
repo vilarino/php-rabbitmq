@@ -4,5 +4,5 @@ namespace App\Application\Queue;
 
 interface QueueInterface
 {
-    public function publish(string $message, string $exchange, string $queue, string $routingKey);
+    public function publish(string $message, string $queue, string $routingKey);
 }
