@@ -7,3 +7,14 @@ if (!function_exists('shutdown')) {
         $connection->close();
     }
 }
+
+if (!function_exists('env')) {
+    function env(string $var)
+    {
+        if(isset($_ENV[$var]))
+        {
+            return $_ENV[$var];
+        }
+        return false;
+    }
+}
