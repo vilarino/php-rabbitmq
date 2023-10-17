@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Warning":6},"times":{"Warning":0.005,"Tests\\PersonTest::should_create_person_test":0.004}}
+{"version":1,"defects":{"Warning":6},"times":{"Warning":0.005,"Tests\\PersonTest::should_create_person_test":0.004,"Tests\\PersonTest::should_create_person":0.015}}

@@ -5,7 +5,7 @@ namespace App\Domain\Entity;
 use App\Queue\JsonableInterface;
 
 
-class Person implements JsonableInterface
+class Person
 {
     public string $name;
     public string $id;
@@ -18,12 +18,4 @@ class Person implements JsonableInterface
       $this->email = $email;
     }
 
-    public function json()
-    {
-        return json_encode([
-            'id' => $this->id,
-            'name' => $this->name,
-            'age' => $this->email
-        ]);
-    }
 }

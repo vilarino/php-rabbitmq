@@ -2,22 +2,23 @@
 
 namespace App\Application\UseCase\CreatePerson;
 
-use App\Application\Handler\SendMailHandler;
+use App\Application\Handler\SendWelcomeMailHandler;
 use App\Application\Repository\PersonRepositoryInterface;
 use App\Domain\Entity\Person;
 use App\Domain\Event\PersonCreatedEvent;
 use App\Infra\Mediator\MediatorInterface;
+use DI\Container;
 
 class CreatePerson
 {
     private PersonRepositoryInterface $personRepository;
     private MediatorInterface $mediator;
 
-    public function __construct(PersonRepositoryInterface $personRepository, MediatorInterface $mediator)
+    public function __construct(PersonRepositoryInterface $personRepository, MediatorInterface $mediator, Container $container)
     {
         $this->personRepository = $personRepository;
         $this->mediator = $mediator;
-        $this->mediator->register(new SendMailHandler());
+        $this->mediator->register($container->get(SendWelcomeMailHandler::class));
     }
 
     public function execute(Input $input)

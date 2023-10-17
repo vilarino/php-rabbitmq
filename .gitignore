@@ -1,4 +1,4 @@
 vendor
 docker/logs
 .idea
-
+.env
