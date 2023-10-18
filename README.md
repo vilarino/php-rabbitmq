@@ -29,6 +29,14 @@ Esse projeto tem como objetivo servir de exemplo para utilização de algumas te
         |   |   |   |-- DomainEventInterface.php
         |   |   |   |-- PersonCreatedEvent.php
         |   |-- 📂 Infra
+        |   |   |-- 📂 Logger
+        |   |   |   |-- AbstractLogger.php
+        |   |   |   |-- LoggerAwareInterface.php
+        |   |   |   |-- LoggerAwareTrait.php
+        |   |   |   |-- LoggerInterface.php
+        |   |   |   |-- LoggerTrait.php
+        |   |   |   |-- LogLevel.php
+        |   |   |   |-- NullLogger.php
         |   |   |-- 📂 Mediator
         |   |   |   |-- MediatorInterface.php
         |   |   |   |-- Mediator.php
