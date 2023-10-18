@@ -35,7 +35,7 @@ Esse projeto tem como objetivo servir de exemplo para utilização de algumas te
         |   |   |   📂 Queue
         |   |   |   |-- RabbitMQAdapter.php
         |   |   |   📂 Repository
-        |   |   |   |-- PersonRepository
+        |   |   |   |-- PersonRepository.php
         |   |-- Application.php 
         |   |-- helpers.php 
 ```
