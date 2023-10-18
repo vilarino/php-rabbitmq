@@ -3,6 +3,8 @@
 namespace App\Infra\Queue;
 
 use App\Application\Queue\QueueInterface;
+use App\Infra\Logger\LoggerInterface;
+use App\Infra\Logger\LogLevel;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exchange\AMQPExchangeType;
@@ -11,10 +13,12 @@ use PhpAmqpLib\Message\AMQPMessage;
 class RabbiMQAdapter implements QueueInterface
 {
     private string $exchange;
+    private LoggerInterface $logger;
 
-    public function __construct()
+    public function __construct(LoggerInterface $logger)
     {
         $this->exchange = env("RABBIT_EXCHANGE");
+        $this->logger = $logger;
     }
 
     public AMQPStreamConnection $connection;
@@ -56,8 +60,7 @@ class RabbiMQAdapter implements QueueInterface
             $channel->close();
             $this->connection->close();
         } catch (\Exception $exc) {
-            var_dump($exc->getMessage());
-            exit;
+            $this->logger->log(LogLevel::ERROR, $exc->getMessage(), $exc->getTrace());
         }
     }
 
@@ -65,8 +68,8 @@ class RabbiMQAdapter implements QueueInterface
     {
         try {
             $chanel->exchange_declare($this->exchange, AMQPExchangeType::TOPIC, false, true, false);
-        } catch (\Exception $exception) {
-            var_dump($exception->getMessage());
+        } catch (\Exception $exc) {
+            $this->logger->log(LogLevel::ERROR, $exc->getMessage(), $exc->getTrace());
         }
     }
 
@@ -75,8 +78,8 @@ class RabbiMQAdapter implements QueueInterface
         try {
             $channel->queue_declare($queue, false, true, false, false);
             $channel->queue_bind($queue, $this->exchange, $routingKey);
-        } catch (\Exception $exception) {
-            var_dump($exception);
+        } catch (\Exception $exc) {
+            $this->logger->log(LogLevel::ERROR, $exc->getMessage(), $exc->getTrace());
         }
     }
 }

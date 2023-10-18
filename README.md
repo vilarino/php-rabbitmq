@@ -6,7 +6,7 @@ Esse projeto tem como objetivo servir de exemplo para utilização de algumas te
 * Xdebug
 
 ## Estrutura
-```bash
+```
     |-- 📂 php-rabbitmq
         |-- 📂 docker
         |-- 📂 src
