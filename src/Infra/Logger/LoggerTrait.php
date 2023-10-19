@@ -127,6 +127,8 @@ trait LoggerTrait
      * @param array $context
      *
      * @return void
+     *
+     * @throws InvalidArgumentException
      */
     abstract public function log(string $level, string $message, array $context = []);
 }
